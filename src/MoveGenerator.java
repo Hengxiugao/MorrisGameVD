@@ -1,10 +1,10 @@
 /***
- * Author: Hengxiu Gao, UTD ID: 2021229554
- * 
+ * Author: Hengxiu Gao, Author: Hengxiu Gao, Email:Hengxiugao@yahoo.com
+ *
  * CS 6343 AI Project, Morris Game Variant-D
- * 
+ *
  * Class:MoveGenerator, Implement each kind of generating move in the game, including generate add, generate move, generate remove and generate hopping.
- * 
+ *
  */
 
 import java.util.ArrayList;
@@ -19,9 +19,9 @@ public class MoveGenerator {
 		BoardPosition b1 = new BoardPosition("WWWWWxxxxxxxxxxxBxBBxxx");
 		MoveGenerator moveg = new MoveGenerator();
 		//System.out.println(moveg.isCloseMill(2,b1));
-		
+
 		ArrayList<BoardPosition> L = moveg.GenerateMovesOpening(b1);
-		
+
 		for(BoardPosition i : L)
 		{
 			System.out.println(i.toString()+", est="+estimate.StaticEstimateOpening(i));
@@ -29,15 +29,15 @@ public class MoveGenerator {
 		*/
 		Utility.printBoard(new BoardPosition("WWxxxBxBBWBxxWWWBxxBxBW"));
 	}
-	
-	
+
+
 	ArrayList<BoardPosition> GenerateMovesOpening(BoardPosition current) throws Exception
 	{
-		
+
 		return GenerateAdd(current, true);
-		
+
 	}
-	
+
 	ArrayList<BoardPosition> GenerateMovesOpeningBlack(BoardPosition current) throws Exception
 	{
 		BoardPosition temp = new BoardPosition(current.toString());
@@ -49,38 +49,38 @@ public class MoveGenerator {
 		}
 		return L;
 	}
-	
-	
+
+
 	ArrayList<BoardPosition> GenerateMovesMidgameEndgame(BoardPosition current) throws Exception
 	{
 		if(current.getNumOfWhite()==3)
 			return GenerateHopping(current,true);
 		else
 			return GenerateMove(current,true);
-		
+
 	}
-	
+
 	ArrayList<BoardPosition> GenerateMovesMidgameEndgameBlack(BoardPosition current) throws Exception
 	{
 		current.setIsWhite(false);
 		BoardPosition temp = new BoardPosition(current.toString());
 		temp.swapColor();
 		ArrayList<BoardPosition> L = new ArrayList<BoardPosition>();
-		
+
 		if(current.getNumOfWhite()==3)
 			L = GenerateHopping(temp,false);
 		else
 			L = GenerateMove(temp,false);
-		
+
 		for(BoardPosition l : L)
 		{
 			l.swapColor();
 		}
-		
+
 		return L;
 	}
-	
-	
+
+
 	ArrayList<BoardPosition> GenerateAdd(BoardPosition board, boolean isWhite) throws Exception
 	{
 		ArrayList<BoardPosition> L = new ArrayList<BoardPosition>();
@@ -106,9 +106,9 @@ public class MoveGenerator {
 			}
 		}
 		return L;
-		
+
 	}
-	
+
 	ArrayList<BoardPosition> GenerateHopping(BoardPosition board, boolean isWhite) throws Exception
 	{
 		ArrayList<BoardPosition> L = new ArrayList<BoardPosition>();
@@ -132,9 +132,9 @@ public class MoveGenerator {
 					}
 		}
 		return L;
-		
+
 	}
-	
+
 	ArrayList<BoardPosition> GenerateMove(BoardPosition board, boolean isWhite) throws Exception
 	{
 		ArrayList<BoardPosition> L = new ArrayList<BoardPosition>();
@@ -162,18 +162,18 @@ public class MoveGenerator {
 			}
 		}
 		return L;
-		
+
 	}
-	
+
 	ArrayList<BoardPosition> GenerateRemove(BoardPosition board, ArrayList<BoardPosition> L, boolean isWhite) throws Exception
 	{
 		for(int i=0;i<23;i++)
 			if(board.getPosition(i)==PositionType.B)
 			{
 				//if(!closeMill(i,board))//TODO
-				if(!Utility.isCloseMill(i,board)) 
+				if(!Utility.isCloseMill(i,board))
 				{
-					
+
 					BoardPosition board_temp = new BoardPosition(board.toString());
 					board_temp.isClose = board.isClose;
 					board_temp.removePiece(i);
@@ -181,12 +181,12 @@ public class MoveGenerator {
 					board_temp.setIsWhite(isWhite);
 					L.add(board_temp);
 				}
-				
+
 			}
 		//if(L.isEmpty()) TODO bug here
 		//	L.add(board);
 		return L;
-		
+
 	}
 
 }

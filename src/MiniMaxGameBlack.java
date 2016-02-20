@@ -1,10 +1,10 @@
 /***
- * Author: Hengxiu Gao, UTD ID: 2021229554
- * 
+ * Author: Hengxiu Gao, Author: Hengxiu Gao, Email:Hengxiugao@yahoo.com
+ *
  * CS 6343 AI Project, Morris Game Variant-D
- * 
+ *
  * Class: MiniMaxGameBlack, Using mini max algorithm to search the Black players' moves for the stage 2 and stage 3 of Morris Game
- * 
+ *
  */
 
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ public class MiniMaxGameBlack {
 	MoveGenerator moveGen = new MoveGenerator();
 	public static void main(String[] args) throws Exception {
 		MiniMaxGameBlack minimaxblack = new MiniMaxGameBlack();
-		
+
 		if(args.length>0)
 		{
 			if(args.length<4)
@@ -33,12 +33,12 @@ public class MiniMaxGameBlack {
 			int current_phy = Integer.parseInt(args[3]);
 			BoardPosition InputPosition = new BoardPosition(Utility.ReadFile(InputFile));
 			InputPosition.setPhy(current_phy);
-			
+
 			System.out.println("Input Board:");
 			Utility.printBoard(InputPosition);
-			
+
 			OutputObject out = minimaxblack.MiniMax(depth,true,InputPosition);
-			
+
 			System.out.println("Output Board:");
 			Utility.printBoard(out.b);
 			Utility.WriteFile(OutputFile, out.toString());
@@ -46,14 +46,14 @@ public class MiniMaxGameBlack {
 		}else
 		{
 			BoardPosition InputPosition = new BoardPosition("BBBBxxxxBxxBxxWxWxxWxxW");
-			
+
 			OutputObject out = minimaxblack.MiniMax(5,true,InputPosition);
 			//out.b.swapColor();
-			
+
 			System.out.println(out);
 		}
-		
-		
+
+
 	}
 	OutputObject MiniMax(int depth, boolean isBlack, BoardPosition board) throws Exception
 	{
@@ -97,7 +97,7 @@ public class MiniMaxGameBlack {
 			}
 		}
 		return out;
-	
+
 	}
 
 }

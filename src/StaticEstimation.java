@@ -1,10 +1,10 @@
 /***
- * Author: Hengxiu Gao, UTD ID: 2021229554
- * 
+ * Author: Hengxiu Gao, Author: Hengxiu Gao, Email:Hengxiugao@yahoo.com
+ *
  * CS 6343 AI Project, Mills Game Variant-D
- * 
+ *
  * Class: StaticEstimation, implement static estimate function for the game
- * 
+ *
  */
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class StaticEstimation {
 
 	MoveGenerator moveGen = new MoveGenerator();
 	public static void main(String[] args) {
-		
+
 
 	}
 	public int StaticEstimateMidgameEndgame(BoardPosition current) throws Exception
@@ -27,21 +27,21 @@ public class StaticEstimation {
 		if(numBlackPieces<=2) return 10000;
 			else if(numBlackPieces<=2) return -10000;
 				else return (1000 * (numWhitePieces - numBlackPieces)- numBlackMoves);
-		
+
 	}
-	
+
 	public int StaticEstimateOpening(BoardPosition current) throws Exception
 	{
 		return current.getNumOfWhite() - current.getNumOfBlack();
 	}
-	
+
 	/*
-	 * Improved by considering Closed Mills, Difference of # Closed mills, Difference of # blocked opponent pieces, Difference of # pieces, Difference of # 2 piece configurations, 
+	 * Improved by considering Closed Mills, Difference of # Closed mills, Difference of # blocked opponent pieces, Difference of # pieces, Difference of # 2 piece configurations,
 	 * Difference of # 3-piece configurations, Difference of # Double mills, and check if it is won.
 	 * */
 	public int StaticEstimateMidgameEndgameImproved(BoardPosition current) throws Exception
 	{
-		
+
 		int Closed_Mills = current.isClose&current.IsWhite() ? 1 : current.isClose&!current.IsWhite() ? -1 : 0;
 		int DiffBlockedOpponentPieces = NumberofblockedOpponentPieces(current);
 		int DiffNumOfPieces = current.getNumOfWhite() - current.getNumOfBlack();
@@ -60,12 +60,12 @@ public class StaticEstimation {
 		{
 			return 26 * Closed_Mills + 10 * PieceConfig[0] + 1 * PieceConfig[1] + 10000 * isWinning;
 		}
-		
-	
+
+
 	}
-	
+
 	/*
-	 * Improved by considering Closed Mills, Difference of # Closed mills, Difference of # blocked opponent pieces, Difference of # pieces, Difference of # 2 piece configurations, 
+	 * Improved by considering Closed Mills, Difference of # Closed mills, Difference of # blocked opponent pieces, Difference of # pieces, Difference of # 2 piece configurations,
 	 * Difference of # 3-piece configurations
 	 * */
 	public int StaticEstimateOpeningImproved(BoardPosition current) throws Exception
@@ -74,7 +74,7 @@ public class StaticEstimation {
 		int DiffBlockedOpponentPieces = NumberofblockedOpponentPieces(current);
 		int DiffNumOfPieces = current.getNumOfWhite() - current.getNumOfBlack();
 		int PieceConfig[] = NumberofPieceConfigurations(current);
-		
+
 		/*
 		System.out.println("current="+current+",Mills="+Closed_Mills+",WhiteClose="+current.isClose+" BlockOppt="+DiffBlockedOpponentPieces+", 2 PieceConfig="
 				+PieceConfig[0]+", 3 PieceConfig="
@@ -82,10 +82,10 @@ public class StaticEstimation {
 		*/
 		return 28 * Closed_Mills + 1 *DiffBlockedOpponentPieces + 9 * DiffNumOfPieces + 10 * PieceConfig[0] + 7 * PieceConfig[1];
 	}
-	
-	
+
+
 	/*
-	 * Difference between the number of yours opponent’s and yours blocked pieces 
+	 * Difference between the number of yours opponent’s and yours blocked pieces
 	 * (pieces which don’t have an empty adjacent point)
 	 * */
 	private int NumberofblockedOpponentPieces(BoardPosition current) throws Exception
@@ -94,11 +94,11 @@ public class StaticEstimation {
 		int countBlack = 0;
 		for(int i=0;i<23;i++)
 		{
-			
+
 			if(current.getPosition(i)!=PositionType.x)
 			{
 				PositionType Opponent_pos = current.getPosition(i)==PositionType.B? PositionType.W:PositionType.B;
-				
+
 				int[] neighbors = Utility.getNeighbors(i);
 				boolean isBlocked = true;
 				for(int j=0;j<neighbors.length;j++)
@@ -116,18 +116,18 @@ public class StaticEstimation {
 		}
 		return countWhite - countBlack;
 	}
-	
+
 	/*
 	 * Return Number of 2 piece configurations, Number of 3-piece configurations and Double mills
-	 * 
+	 *
 	 * Return Number of 2 piece configurations :
-	 * Difference between the number of yours and yours opponent’s 2 piece configurations 
+	 * Difference between the number of yours and yours opponent’s 2 piece configurations
 	 * (A 2-piece configuration is one to which adding one more piece would close a mills)
-	 * 
+	 *
 	 * Number of 3-piece configurations
-	 * Difference between the number of yours and yours opponent’s 3 piece configurations 
+	 * Difference between the number of yours and yours opponent’s 3 piece configurations
 	 * (A 3-piece configuration is one to which a piece can be added in which one of two ways to close a mills)
-	 * 
+	 *
 	 * Double mills
 	 * Difference between number of yours and yours opponent’s double mills
 	 *  (A double mills is one in which two mills share a common piece)
@@ -142,7 +142,7 @@ public class StaticEstimation {
 		int doubleBlack = 0;
 		int[] whitetable = new int[23];
 		int[] blacktable = new int[23];
-		
+
 		for (int i = 0; i< 23; i++)
 		{
 			PositionType bPos = current.getPosition(i);
@@ -153,7 +153,7 @@ public class StaticEstimation {
 				ArrayList<Integer> CloseMill = Utility.isCloseMillReturnPos(i, board_temp);
 				if (CloseMill.size()>0)
 				{
-					
+
 					counterBlack2 += CloseMill.size() / 2;
 					doubleBlack += CloseMill.size() / 2 - 1;
 					for(int j : CloseMill)
@@ -163,10 +163,10 @@ public class StaticEstimation {
 						else
 							counterBlack3++;
 					}
-					
-					
+
+
 					//System.out.println("\n ----debug------ i="+i+", Black2="+counterBlack2+",  Black3="+counterBlack3+", double black="+doubleBlack);
-					
+
 				}
 				board_temp = new BoardPosition(current.toString());
 				board_temp.putPiece(i, PositionType.W);
@@ -183,11 +183,11 @@ public class StaticEstimation {
 							counterWhite3++;
 					}
 					//System.out.println("----debug------ i="+i+", White2="+counterWhite2+",  White3="+counterWhite3+", double white="+doubleWhite);
-					
+
 				}
 			}
 		}
 		return new int[]{counterWhite2 - counterBlack2,counterWhite3 - counterBlack3, doubleWhite-doubleBlack};
 	}
-	
+
 }

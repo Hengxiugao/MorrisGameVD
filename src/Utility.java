@@ -1,10 +1,10 @@
 /***
- * Author: Hengxiu Gao, UTD ID: 2021229554
- * 
+ * Author: Hengxiu Gao, Author: Hengxiu Gao, Email:Hengxiugao@yahoo.com
+ *
  * CS 6343 AI Project, Morris Game Variant-D
- * 
+ *
  * Class: Utility, implement some utility functions.
- * 
+ *
  */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -49,9 +49,9 @@ public class Utility {
 			System.out.println("Error reading file '" + inputFile + "'");
 		}
 		return null;
-	
+
 	}
-	
+
 	public static void initWrite() throws IOException
 	{
 		fileWriter = new FileWriter("Trace.txt");
@@ -79,9 +79,9 @@ public class Utility {
 		catch(IOException ex) {
 			System.out.println("Error writing to file '" + outputFile + "'");
 		}
-	
+
 	}
-	
+
 	public static boolean isCloseMill(int currentMove, BoardPosition board) throws Exception
 	{
 		//System.out.println("    in is close, board="+board.toString());
@@ -246,10 +246,10 @@ public class Utility {
 		default:
 			throw new Exception("No such position");
 		}
-	
-		
+
+
 	}
-	
+
 	public static ArrayList<Integer> isCloseMillReturnPos(int currentMove, BoardPosition board) throws Exception
 	{
 		//System.out.println("    in is close, board="+board.toString());
@@ -577,10 +577,10 @@ public class Utility {
 		default:
 			throw new Exception("No such position");
 		}
-	
-		
+
+
 	}
-	
+
 	public static int[] getNeighbors(int currentMove) throws Exception
 	{
 		switch(currentMove)
@@ -635,7 +635,7 @@ public class Utility {
 			throw new Exception("No such position");
 		}
 	}
-	
+
 	public static String ReadDirBoardFromFile(String inputFile)
 	{
 		String result = new String();
@@ -649,7 +649,7 @@ public class Utility {
 			for(int i=6;i>=0;i--)
 				result+= temp[i];
 			result = result.replaceAll(" ", "");
-			
+
 			return result;
 		}
 		catch(FileNotFoundException ex)
@@ -672,6 +672,6 @@ public class Utility {
 		System.out.println("        "+board.getPosition(6)+"           "+board.getPosition(7));
 		System.out.println("    "+board.getPosition(3)+"         "+board.getPosition(4)+"         "+board.getPosition(5));
 		System.out.println(board.getPosition(0)+"             "+board.getPosition(1)+"             "+board.getPosition(2));
-		
+
 	}
 }

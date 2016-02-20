@@ -1,10 +1,10 @@
 /***
- * Author: Hengxiu Gao, UTD ID: 2021229554
- * 
+ * Author: Hengxiu Gao, Author: Hengxiu Gao, Email:Hengxiugao@yahoo.com
+ *
  * CS 6343 AI Project, Morris Game Variant-D
- * 
+ *
  * Class: MiniMaxOpeningBlack, Using mini max algorithm to search the Black players' moves for the stage 1 of Morris Game
- * 
+ *
  */
 
 
@@ -17,7 +17,7 @@ public class MiniMaxOpeningBlack {
 	MoveGenerator moveGen = new MoveGenerator();
 	public static void main(String[] args) throws Exception {
 		MiniMaxOpeningBlack minimaxblack = new MiniMaxOpeningBlack();
-		
+
 		if(args.length>0)
 		{
 			if(args.length<4)
@@ -34,12 +34,12 @@ public class MiniMaxOpeningBlack {
 			int current_phy = Integer.parseInt(args[3]);
 			BoardPosition InputPosition = new BoardPosition(Utility.ReadFile(InputFile));
 			InputPosition.setPhy(current_phy);
-			
+
 			System.out.println("Input Board:");
 			Utility.printBoard(InputPosition);
-			
+
 			OutputObject out = minimaxblack.MiniMax(depth,true,InputPosition);
-			
+
 			System.out.println("Output Board:");
 			Utility.printBoard(out.b);
 			Utility.WriteFile(OutputFile, out.toString());
@@ -47,14 +47,14 @@ public class MiniMaxOpeningBlack {
 		}else
 		{
 			BoardPosition InputPosition = new BoardPosition("WWWBBBxxWBxWBWxxxBBBWWW");
-			
+
 			OutputObject out = minimaxblack.MiniMax(4,true,InputPosition);
-			
+
 			System.out.println(out);
 		}
-		
+
 	}
-	
+
 	OutputObject MiniMax(int depth, boolean isBlack, BoardPosition board) throws Exception
 	{
 		OutputObject out = new OutputObject();
@@ -98,7 +98,7 @@ public class MiniMaxOpeningBlack {
 			}
 		}
 		return out;
-	
+
 	}
 
 }

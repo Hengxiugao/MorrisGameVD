@@ -1,12 +1,12 @@
 /***
- * Author: Hengxiu Gao, UTD ID: 2021229554
- * 
+ * Author: Hengxiu Gao, Author: Hengxiu Gao, Email:Hengxiugao@yahoo.com
+ *
  * CS 6343 AI Project, Morris Game Variant-D
- * 
+ *
  * Class: MiniMaxOpeningImproved, Using mini max algorithm to search the White players' moves for the stage 1 of Mills Game
- * 		  The static estimate function has been improved, it considers of Closed Mills, Difference of # Closed mills, Difference of # blocked opponent pieces, 
+ * 		  The static estimate function has been improved, it considers of Closed Mills, Difference of # Closed mills, Difference of # blocked opponent pieces,
  * 		  Difference of # pieces, Difference of # 2 piece configurations, Difference of # 3-piece configurations.
- * 
+ *
  */
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class MiniMaxOpeningImproved {
 	MoveGenerator moveGen = new MoveGenerator();
 	public static void main(String[] args) throws Exception {
 		MiniMaxOpeningImproved minimaximproved = new MiniMaxOpeningImproved();
-		
+
 		if(args.length>0)
 		{
 			if(args.length<4)
@@ -34,12 +34,12 @@ public class MiniMaxOpeningImproved {
 			int current_phy = Integer.parseInt(args[3]);
 			BoardPosition InputPosition = new BoardPosition(Utility.ReadFile(InputFile));
 			InputPosition.setPhy(current_phy);
-			
+
 			System.out.println("Input Board:");
 			Utility.printBoard(InputPosition);
-			
+
 			OutputObject out = minimaximproved.MiniMaxOpeningImporved(depth,true,InputPosition);
-			
+
 			System.out.println("Output Board:");
 			Utility.printBoard(out.b);
 			Utility.WriteFile(OutputFile, out.toString());
@@ -48,12 +48,12 @@ public class MiniMaxOpeningImproved {
 		{
 			BoardPosition InputPosition = new BoardPosition("xxxxxxxxxWxxWxxxBxxxxxx");
 			InputPosition.setPhy(4);
-			
+
 			OutputObject out = minimaximproved.MiniMaxOpeningImporved(5,true,InputPosition);
-			
+
 			System.out.println(out);
 		}
-		
+
 	}
 	/*
 	void GenerateSearchTree(SearchTreeNode root, int phy) throws Exception
@@ -61,7 +61,7 @@ public class MiniMaxOpeningImproved {
 		ArrayList<BoardPosition> BoardList;
 		if(phy==4)
 			return;
-		
+
 		if(phy%2==0)
 			BoardList = moveGW.GenerateMovesOpening(root.board);
 		else
@@ -72,9 +72,9 @@ public class MiniMaxOpeningImproved {
 			root.children.add(child);
 			GenerateSearchTree(child,root.board.getPhy()+1);
 		}
-		
+
 	}*/
-	
+
 	OutputObject MiniMaxOpeningImporved(int depth, boolean isWhite, BoardPosition board) throws Exception
 	{
 		OutputObject out = new OutputObject();
@@ -94,7 +94,7 @@ public class MiniMaxOpeningImproved {
 		{
 			b.setPhy(board.getPhy()+1);
 			//System.out.println("level at"+depth+", board="+b+",phy="+b.getPhy()+",is White="+b.IsWhite());
-			
+
 			if (isWhite)
 			{
 				in = MiniMaxOpeningImporved(depth - 1, false, b);
@@ -118,7 +118,7 @@ public class MiniMaxOpeningImproved {
 			}
 		}
 		return out;
-	
+
 	}
 
 }

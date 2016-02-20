@@ -1,10 +1,10 @@
 /***
- * Author: Hengxiu Gao, UTD ID: 2021229554
- * 
+ * Author: Hengxiu Gao, Author: Hengxiu Gao, Email:Hengxiugao@yahoo.com
+ *
  * CS 6343 AI Project, Morris Game Variant-D
- * 
+ *
  * Class: MiniMaxGame, Using mini max algorithm to search the White players' moves for the stage 2 and stage 3 of Morris Game
- * 
+ *
  */
 
 import java.util.ArrayList;
@@ -32,12 +32,12 @@ public class MiniMaxGame {
 			int current_phy = Integer.parseInt(args[3]);
 			BoardPosition InputPosition = new BoardPosition(Utility.ReadFile(InputFile));
 			InputPosition.setPhy(current_phy);
-			
+
 			System.out.println("Input Board:");
 			Utility.printBoard(InputPosition);
-			
+
 			OutputObject out = minimax.MiniMax(depth,true,InputPosition);
-			
+
 			System.out.println("Output Board:");
 			Utility.printBoard(out.b);
 			Utility.WriteFile(OutputFile, out.toString());
@@ -45,12 +45,12 @@ public class MiniMaxGame {
 		}else
 		{
 			BoardPosition InputPosition = new BoardPosition("xxxxxxxxxWxxWxxxBxxxxxx");
-			
+
 			OutputObject out = minimax.MiniMax(5,true,InputPosition);
-			
+
 			System.out.println(out);
 		}
-		
+
 	}
 	OutputObject MiniMax(int depth, boolean isWhite, BoardPosition board) throws Exception
 	{
@@ -93,7 +93,7 @@ public class MiniMaxGame {
 			}
 		}
 		return out;
-	
+
 	}
 
 }

@@ -1,20 +1,20 @@
 /***
- * Author: Hengxiu Gao, UTD ID: 2021229554
- * 
+ * Author: Hengxiu Gao, Email:Hengxiugao@yahoo.com
+ *
  * CS 6343 AI Project, Morris Game Variant-D
- * 
+ *
  * Class: ABGame, Using alpha-beta pruning algorithm to search the white players' moves for the stage 2 and stage 3 of Morris Game
- * 
+ *
  */
 
 import java.util.List;
 
 
 public class ABGame {
-	
+
 	public static void main(String[] args) throws Exception {
 		ABGame ab = new ABGame();
-		
+
 		if(args.length>0)
 		{
 			if(args.length<4)
@@ -31,27 +31,27 @@ public class ABGame {
 			int current_phy = Integer.parseInt(args[3]);
 			BoardPosition InputPosition = new BoardPosition(Utility.ReadFile(InputFile));
 			InputPosition.setPhy(current_phy);
-			
+
 			System.out.println("Input Board:");
 			Utility.printBoard(InputPosition);
-			
+
 			OutputObject out = ab.ABMiniMax(depth,true,InputPosition, Integer.MIN_VALUE, Integer.MAX_VALUE);
-			
+
 			System.out.println("Output Board:");
 			Utility.printBoard(out.b);
 			Utility.WriteFile(OutputFile, out.toString());
-			
+
 			System.out.println("Program finishes.");
 		}else
 		{
 			BoardPosition InputPosition = new BoardPosition("xxxxxxxxxxxxxxxxxxxxxxx");
 			InputPosition.setPhy(0);
 			OutputObject out = ab.ABMiniMax(8,true,InputPosition,Integer.MIN_VALUE, Integer.MAX_VALUE);
-			
+
 			System.out.println(out);
 		}
 	}
-	
+
 	StaticEstimation estimate = new StaticEstimation();
 	MoveGenerator moveGen = new MoveGenerator();
 	public OutputObject ABMiniMax(int depth, boolean isWhite, BoardPosition board, int alpha, int beta) throws Exception
@@ -96,7 +96,7 @@ public class ABGame {
 				break;
 			}
 		}
-		
+
 		out.estimate = (isWhite) ? alpha : beta;
 		return out;
 	}

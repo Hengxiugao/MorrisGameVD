@@ -1,12 +1,12 @@
 /***
- * Author: Hengxiu Gao, UTD ID: 2021229554
- * 
+ * Author: Hengxiu Gao, Author: Hengxiu Gao, Email:Hengxiugao@yahoo.com
+ *
  * CS 6343 AI Project, Morris Game Variant-D
- * 
+ *
  * Class: MiniMaxGameBlackImproved, Using mini max algorithm to search the White players' moves for the stage 2 and stage 3 of Mills Game
- * 		  The static estimate function has been improved, it considers of Closed Mills, Difference of # Closed mills, Difference of # blocked opponent pieces, 
+ * 		  The static estimate function has been improved, it considers of Closed Mills, Difference of # Closed mills, Difference of # blocked opponent pieces,
  * 		  Difference of # pieces, Difference of # 2 piece configurations, Difference of # 3-piece configurations, Difference of # Double Mills, and check if it is won.
- * 
+ *
  */
 
 
@@ -19,7 +19,7 @@ public class MiniMaxGameImproved {
 	MoveGenerator moveGen = new MoveGenerator();
 	public static void main(String[] args) throws Exception {
 		MiniMaxGameImproved minimaximproved = new MiniMaxGameImproved();
-		
+
 		if(args.length>0)
 		{
 			if(args.length<4)
@@ -36,12 +36,12 @@ public class MiniMaxGameImproved {
 			int current_phy = Integer.parseInt(args[3]);
 			BoardPosition InputPosition = new BoardPosition(Utility.ReadFile(InputFile));
 			InputPosition.setPhy(current_phy);
-			
+
 			System.out.println("Input Board:");
 			Utility.printBoard(InputPosition);
-			
+
 			OutputObject out = minimaximproved.MiniMaxGameImproved(depth,true,InputPosition);
-			
+
 			System.out.println("Output Board:");
 			Utility.printBoard(out.b);
 			Utility.WriteFile(OutputFile, out.toString());
@@ -50,12 +50,12 @@ public class MiniMaxGameImproved {
 		{
 			BoardPosition InputPosition = new BoardPosition("xxxxxxxxxWxxWxxxBxxxxxx");
 			InputPosition.setPhy(4);
-			
+
 			OutputObject out = minimaximproved.MiniMaxGameImproved(5,true,InputPosition);
-			
+
 			System.out.println(out);
 		}
-		
+
 	}
 	OutputObject MiniMaxGameImproved(int depth, boolean isWhite, BoardPosition board) throws Exception
 	{
@@ -98,7 +98,7 @@ public class MiniMaxGameImproved {
 			}
 		}
 		return out;
-	
+
 	}
 
 }

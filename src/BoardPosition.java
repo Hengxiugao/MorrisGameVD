@@ -1,10 +1,10 @@
 /***
- * Author: Hengxiu Gao, UTD ID: 2021229554
- * 
+ * Author: Hengxiu Gao, Author: Hengxiu Gao, Email:Hengxiugao@yahoo.com
+ *
  * CS 6343 AI Project, Morris Game Variant-D
- * 
+ *
  * Class: BoardPosition, Data structure for a board.
- * 
+ *
  */
 
 
@@ -24,7 +24,7 @@ public class BoardPosition {
 			position[i] = PositionType.x;
 		}
 	}
-	
+
 	BoardPosition(String BoardString) throws Exception
 	{
 		position = new PositionType[23];
@@ -34,7 +34,7 @@ public class BoardPosition {
 		String2Position();
 		countBlackWhite();
 	}
-	
+
 	boolean isEmpty(int i)
 	{
 		return position[i]==PositionType.x;
@@ -55,7 +55,7 @@ public class BoardPosition {
 			numOfWhite++;
 		else numOfBlack++;
 	}
-	
+
 	void removePiece(int i) throws Exception
 	{
 		if(position[i]==PositionType.x)
@@ -65,7 +65,7 @@ public class BoardPosition {
 		else
 			numOfBlack--;
 		position[i]=PositionType.x;
-		
+
 	}
 	PositionType getPosition(int i)
 	{
@@ -80,7 +80,7 @@ public class BoardPosition {
 		Position2String();
 		return BoardString;
 	}
-	
+
 	void String2Position()
 	{
 		for(int i=0;i<23;i++)
@@ -97,10 +97,10 @@ public class BoardPosition {
 				position[i] = PositionType.B;
 				break;
 			}
-			
+
 		}
 	}
-	
+
 	void Position2String()
 	{
 		char[] boardchar = new char[23];
@@ -118,11 +118,11 @@ public class BoardPosition {
 				boardchar[i] = 'B';
 				break;
 			}
-			
+
 		}
 		BoardString = new String(boardchar);
 	}
-	
+
 	void swapColor()
 	{
 		for(int i=0;i<23;i++)
@@ -144,35 +144,35 @@ public class BoardPosition {
 			else if(position[i]==PositionType.W)
 				numOfWhite++;
 	}
-	
+
 	int getNumOfWhite()
 	{
 		return numOfWhite;
 	}
-	
+
 	int getNumOfBlack()
 	{
 		return numOfBlack;
 	}
-	
+
 	boolean IsWhite()
 	{
 		return isWhite;
 	}
-	
+
 	void setIsWhite(boolean in)
 	{
 		isWhite = in;
 	}
-	
+
 	int getPhy()
 	{
 		return phy;
 	}
-	
+
 	void setPhy(int in)
 	{
 		phy = in;
 	}
-	
+
 }
